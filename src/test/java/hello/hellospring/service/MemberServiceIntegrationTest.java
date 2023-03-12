@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,10 +24,11 @@ class MemberServiceIntegrationTest {
     @Autowired MemberRepository memberRepository; //@Configuration 한거에서 올라올거임(JdbcMemoryMember 구현 객체)
 
     @Test
+    //@Commit//사용 시 Transactional 반영 안됌
     void 회원가입() throws Exception {
         //given(뭐가 주어졌을때)
         Member member = new Member();
-        member.setName("hello");
+        member.setName("hello100");
 
         //when(뭐를 하면)
         Long saveId = memberService.join(member);//가입 시 멤버 아이디 반환
@@ -36,7 +38,7 @@ class MemberServiceIntegrationTest {
         Assertions.assertEquals(member.getName(), findMember.getName());
     }
     @Test
-    public void 중복_회원_예외 () throws Exception{
+    public void 중복_회원_예외() throws Exception {
         //given
         Member member1 = new Member();
         member1.setName("spring");
