@@ -12,7 +12,7 @@ import java.util.Optional;
 
 //비즈니스 로직
 //@Service//스프링이 올라올때 스프링 컨테이너에 자동으로 등록됨(@Controller, @Service, @Repository 모두 해당)
-@Transactional//jpa를 쓰려면 항상 @Transactional 이 있어야 하낟.
+@Transactional//jpa를 쓰려면 항상 @Transactional 이 있어야 한다.
 public class MemberService {//MemberService가 스프링빈에 등록되어 있지 않으면 Autowired를 적용할 수 없음
 
     private final MemberRepository memberRepository;//인터페이스

@@ -29,7 +29,7 @@ public class JdbcTemplateMemberRepository implements MemberRepository {
     @Override
     public Member save(Member member) {
         SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
-        jdbcInsert.withTableName("member").usingGeneratedKeyColumns("id");
+        jdbcInsert.withTableName("member").usingGeneratedKeyColumns("id");//테이블명과 pk명
 
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("name", member.getName());
@@ -56,7 +56,8 @@ public class JdbcTemplateMemberRepository implements MemberRepository {
 
     @Override
     public List<Member> findAll() {
-        return jdbcTemplate.query("select * from member", memberRowMapper());
+        return jdbcTemplate.query("select * from member", memberRowMapper());//쿼리의 결과가 memberRowMapper()의 인자로 들어간 후 memberRowMapper()
+        //함수가 리턴하는값을 findAll()에서 리스트 형태로 리턴하는 구조
     }
 
     private RowMapper<Member> memberRowMapper(){

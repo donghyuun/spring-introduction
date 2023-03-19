@@ -12,7 +12,7 @@ import java.util.Optional;
 public class JpaMemberRepository implements MemberRepository{
 
     //jpa는 EntityManager로 모든게 동작. 라이브러리를 받았기 때문에 spring boot가 자동으로 생성해줬기 때문에 이걸 injection 해준다.
-    private EntityManager em;
+    private final EntityManager em;//내부적으로 dataSource를 들고있어 db와 통신하는걸 내부에서 다 처리한다.
 
     public JpaMemberRepository(EntityManager em) {
         this.em = em;
@@ -20,7 +20,7 @@ public class JpaMemberRepository implements MemberRepository{
 
     @Override
     public Member save(Member member) {
-        em.persist(member);//자동으로 내부적으로 쿼리써서 저장해줌, setId도 해줌
+        em.persist(member);//자동으로 내부적으로 쿼리써서 "저장"해줌, setId도 해줌
         return member;
     }
 
